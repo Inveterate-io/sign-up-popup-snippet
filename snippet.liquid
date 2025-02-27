@@ -1,0 +1,49 @@
+(() => {
+  function customizeInveterateSignupPopup() {
+    const HEADER_TEXT = "Log in or join Membership.";
+    const DESCRIPTION_TEXT =
+      "Create an account or login to Memembership to start earning credits towards your next purchase, get access to exclusive content and more.";
+    const LOGIN_BUTTON_TEXT = "Continue";
+    const JOIN_BUTTON_TEXT = "Join Membership";
+    const SIGNUP_BUTTON_TEXT = "Join Membership";
+
+    const SUCCESS_HEADER_TEXT = "You're now part of Membership.";
+    const SUCCESS_BUTTON_TEXT = "Shop Now";
+
+    console.log("customizeInveterateSignupPopup begins");
+    const headers = document.querySelectorAll(
+      ".inveterate__modal.inveterate__unpadded.inveterate__identification__modal .inveterate__modal__container header h1"
+    );
+    const descriptions = document.querySelectorAll(
+      ".inveterate__modal.inveterate__unpadded.inveterate__identification__modal .inveterate__modal__container header p"
+    );
+    const successHeaders = document.querySelectorAll(
+      ".inveterate__modal.inveterate__unpadded.inveterate__identification__modal .inveterate__modal__container .inveterate__identification__subview.inveterate__success h1"
+    );
+
+    headers.forEach((header) => {
+      header.textContent = HEADER_TEXT;
+    });
+    descriptions.forEach((d) => {
+      d.textContent = DESCRIPTION_TEXT;
+    });
+    successHeaders.forEach((header) => {
+      header.textContent = SUCCESS_HEADER_TEXT;
+    });
+    const setById = (id, text) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.textContent = text;
+      }
+    };
+
+    setById("inveterate-login-submit", LOGIN_BUTTON_TEXT);
+    setById("inveterate-joinfreetier-btn", JOIN_BUTTON_TEXT);
+    setById("inveterate-identification-shopnow", SUCCESS_BUTTON_TEXT);
+    setById("inveterate-signup-submit", SIGNUP_BUTTON_TEXT);
+  }
+
+  {%- if request.path == '/community/membership' -%}
+    customizeInveterateSignupPopup();
+  {%- endif -%}
+})();
