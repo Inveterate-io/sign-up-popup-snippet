@@ -9,6 +9,7 @@
 
     const SUCCESS_HEADER_TEXT = "You're now part of Membership.";
     const SUCCESS_BUTTON_TEXT = "Shop Now";
+    const SUCCESS_BUTTON_URL = "/collections/all";
 
     console.log("customizeInveterateSignupPopup begins");
     const headers = document.querySelectorAll(
@@ -41,6 +42,10 @@
     setById("inveterate-joinfreetier-btn", JOIN_BUTTON_TEXT);
     setById("inveterate-identification-shopnow", SUCCESS_BUTTON_TEXT);
     setById("inveterate-signup-submit", SIGNUP_BUTTON_TEXT);
+    const shopNowButton = document.getElementById("inveterate-identification-shopnow");
+    if(shopNowButton) {
+      shopNowButton.setAttribute('onclick', `inveterate.identification.login.authenticate({ redirect: '${SUCCESS_BUTTON_URL}' })`)
+    }
   }
 
   {%- if request.path == '/community/membership' -%}
