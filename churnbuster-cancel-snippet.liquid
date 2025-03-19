@@ -1,0 +1,32 @@
+<!-- Begin: Custom theme support for Churn Buster snippet -->
+<script type="text/javascript">
+  (function () {
+    const cancelButton = document.getElementById("inv-cancel");
+    if (cancelButton) {
+      if (!cancelButton.getAttribute('data-has-contract')) {
+        const hasContract = !!window.inveterate?.customer?.subscriptionContract?.id;
+        cancelButton.setAttribute('data-has-contract', hasContract ? 'true' : 'false');
+      }
+    }
+    ChurnBuster = window.ChurnBuster || {};
+    ChurnBuster.cancelAttributes = {
+      accountId: "CHURN_BUSTER_ACCOUNT_ID_REPLACE_ME",
+      source: "inveterate",
+      customerId: "{{ customer.id }}",
+      customerEmail: "{{ customer.email }}",
+      subscriptionId: "",
+      cancelButtonSelector: "#inv-cancel[data-has-contract=true]"
+    };
+    if (window.inveterate?.customer?.subscriptionContract?.id) {
+      ChurnBuster.cancelAttributes.subscriptionId = window.inveterate.customer.subscriptionContract.id;
+    }
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.async = true;
+    script.src = "https://proxy-assets.churnbuster.io/v4/scripts.js?v=1678742553659";
+    var insert = document.getElementsByTagName("script")[0];
+    insert.parentNode.insertBefore(script, insert);
+
+  })();
+</script>
+<!-- End: Custom theme support for Churn Buster snippet -->
