@@ -18,7 +18,7 @@
       cancelButtonSelector: "#inv-cancel[data-has-contract=true]"
     };
     if (window.inveterate?.customer?.subscriptionContract?.id) {
-      ChurnBuster.cancelAttributes.subscriptionId = window.inveterate.customer.subscriptionContract.id;
+      ChurnBuster.cancelAttributes.subscriptionId = window.inveterate.customer.subscriptionContract.id.split("/").pop();
     }
     var script = document.createElement("script");
     script.type = "text/javascript";
